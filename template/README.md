@@ -41,6 +41,7 @@
     |——index.html           // 挂载的静态文件
   |——.eslintrc              // eslint 配置
   |——.babelrc               // babel 配置
+  |——.npmrc                 // npm 配置
   |——package.json           // 项目依赖
   |——postcss.config.js      // postcss 配置
   |——webpack.dll.config.js  // dll 配置文件
