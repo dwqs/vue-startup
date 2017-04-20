@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="desc">
-        <p>{{desc}}</p>
-        <img src="/social/assets/logo.png" alt="logo">
+        <p>\{{desc}}</p>
+        <img src="{{publicPath}}assets/logo.png" alt="logo">
     </div>
 </template>
 

@@ -1,13 +1,9 @@
 {
-  "name": "vue-social",
-  "version": "0.0.1",
-  "description": "followme-social-front-end",
-  "author": "yuankang@followme.com",
-  "license": "BSD",
-  "repository": {
-    "type": "git",
-    "url": "ssh+gitlab@fmgit.chinacloudapp.cn:Frontend/social.git"
-  },
+  "name": "{{name}}",
+  "version": "{{version}}",
+  "description": "{{description}}",
+  "author": "{{author}}",
+  "license": "MIT",
   "scripts": {
     "dll": "./node_modules/.bin/webpack --config webpack.dll.config.js",
     "dev": "cross-env NODE_ENV=development node ./build/dev-server.js",

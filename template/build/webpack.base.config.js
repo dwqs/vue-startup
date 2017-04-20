@@ -56,10 +56,11 @@ module.exports = {
             'vue$': 'vue/dist/vue.js'
         }
     },
-
+    {{#jquery}}
     externals: {
        jquery: 'jQuery'
     },
+    {{/jquery}}
 
     resolveLoader: {
         modules: [path.join(__dirname, '../node_modules')]
@@ -70,11 +71,13 @@ module.exports = {
     },
 
     plugins:[
+        {{#jquery}}
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
             "window.jQuery": "jquery"
         }),
+        {{/jquery}}
 
         new HappyPack(getHappyPackConfig({
             id: 'vue',
@@ -88,7 +91,7 @@ module.exports = {
 
         //copy assets
         new CopyWebpackPlugin([
-            {context: '../src', from: 'assets/**/*', to: path.resolve(__dirname, '../dist')}
+            {context: '../src', from: 'assets/**/*', to: path.resolve(__dirname, '../{{path}}')}
         ]),
 
         // https://github.com/ampedandwired/html-webpack-plugin
@@ -96,7 +99,7 @@ module.exports = {
           filename: 'index.html',
           template: 'index.html',
           inject: true,
-          env: process.env.NODE_ENV
+          env: process.env.NODE_ENV,
           minify: {
                 removeComments: true,
                 collapseWhitespace: true,

@@ -29,7 +29,7 @@ prodConfig.module.rules.unshift({
 });
 
 prodConfig.plugins = (prodConfig.plugins || []).concat([
-    new CleanWebpackPlugin(['dist'], {
+    new CleanWebpackPlugin(['{{path}}'], {
         root: path.join(__dirname, '../'),
         verbose: true,
         dry: false
@@ -72,8 +72,8 @@ prodConfig.plugins = (prodConfig.plugins || []).concat([
     }),
 
     new webpack.optimize.CommonsChunkPlugin({
-        name:"vendor",
-        filename:"vendor.js"
+        name: "vendor",
+        filename: "vendor.js"
     }),
 
     new ParallelUglifyPlugin({

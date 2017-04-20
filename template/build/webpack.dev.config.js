@@ -11,11 +11,9 @@ let config = require('../config');
 
 devConfig.module.rules.unshift({
     test: /\.less$/,
-    //use: ['vue-style-loader','css-loader', 'postcss-loader', 'less-loader']
     use: ['happypack/loader?id=less-dev']
 }, {
     test: /\.css$/,
-    //use: ['vue-style-loader','css-loader', 'postcss-loader']
     use: ['happypack/loader?id=css-dev']
 });
 
@@ -39,7 +37,7 @@ devConfig.plugins = (devConfig.plugins || []).concat([
     new webpack.DllReferencePlugin({
       context: __dirname,
       //引入 dll 生成的 manifest 文件
-      manifest: require('../dist/vendor-manifest.json')
+      manifest: require('../{{path}}/vendor-manifest.json')
     }),
 
     new webpack.NoEmitOnErrorsPlugin(),

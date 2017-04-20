@@ -12,7 +12,7 @@ let config = require('../config/index');
 let compiler = webpack(webpackDevConfig);
 let server = new WebpackDevServer(compiler, webpackDevConfig.devServer);
 
-const url = `localhost:${config.dev.port}/social`;
+const url = `localhost:${config.dev.port}{{publicPath}}`;
 const env = process.env.NODE_ENV || 'development';
 
 let browserIsOpen = false;
