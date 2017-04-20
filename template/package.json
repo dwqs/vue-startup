@@ -5,6 +5,7 @@
   "author": "{{author}}",
   "license": "MIT",
   "scripts": {
+    "prepush": "npm run ilint -q",
     "dll": "./node_modules/.bin/webpack --config webpack.dll.config.js",
     "dev": "cross-env NODE_ENV=development node ./build/dev-server.js",
     "build": "cross-env NODE_ENV=production ./node_modules/.bin/webpack --config ./build/webpack.prod.config.js --progress --hide-modules",
@@ -36,6 +37,7 @@
     "eslint-config-vue": "^2.0.2",
     "eslint-plugin-vue": "^2.0.1",
     "extract-text-webpack-plugin": "^2.1.0",
+    "husky": "^0.13.3",
     "file-loader": "^0.9.0",
     "gulp-util": "^3.0.8",
     "happypack": "^3.0.3",
