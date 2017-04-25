@@ -6,6 +6,7 @@ let ExtractTextPlugin = require("extract-text-webpack-plugin");
 let OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 let ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 let CleanWebpackPlugin = require('clean-webpack-plugin');
+let WebpackMd5Hash = require('webpack-md5-hash');
 let os = require('os');
 let HappyPack = require('happypack');   //loader 多进程处理
 
@@ -89,7 +90,9 @@ prodConfig.plugins = (prodConfig.plugins || []).concat([
             sourceMap: true,
             mangle: true
         }
-    })
+    }),
+
+    new WebpackMd5Hash()
 ]);
 
 module.exports = Object.assign({},prodConfig,{

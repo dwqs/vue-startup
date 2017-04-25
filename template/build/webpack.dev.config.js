@@ -65,11 +65,11 @@ module.exports = Object.assign({},devConfig,{
         ]
     },
     output: {
-        filename: "[name].[hash:8].js",
+        filename: "[name].js",
         path: config.dev.assetsRoot,
         publicPath: config.dev.assetsPublicPath,
         sourceMapFilename: '[file].map',
-        chunkFilename: "[name].[chunkhash:8].js"
+        chunkFilename: "[name].js"
     },
     devtool:'cheap-module-eval-source-map'
 });
