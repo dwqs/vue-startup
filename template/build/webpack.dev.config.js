@@ -50,7 +50,10 @@ devConfig.devServer = {
     quiet: false,
     port: config.dev.port,
     inline: true,
-    historyApiFallback: true,
+    // 解决开发模式下 在子路由刷新返回 404 的情景
+    historyApiFallback: {
+        index: config.dev.assetsPublicPath
+    },
     stats: 'normal',
     contentBase: config.dev.contentBase,
     publicPath: config.dev.assetsPublicPath
