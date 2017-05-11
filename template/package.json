@@ -54,7 +54,7 @@
     "vue-style-loader": "^1.0.0",
     "vue-template-compiler": "^2.0.0",
     "webpack": "^2.2.0",
-    "webpack-dev-server": "^2.2.0",
+    "webpack-dev-server": "^2.4.5",
     "webpack-md5-hash": "^0.0.5",
     "webpack-parallel-uglify-plugin": "^0.4.1"
   },

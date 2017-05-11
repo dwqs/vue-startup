@@ -49,6 +49,8 @@ devConfig.devServer = {
     noInfo: false,
     quiet: false,
     port: config.dev.port,
+    // #https://github.com/webpack/webpack-dev-server/issues/882
+    disableHostCheck: true,
     inline: true,
     // 解决开发模式下 在子路由刷新返回 404 的情景
     historyApiFallback: {
