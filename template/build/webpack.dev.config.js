@@ -2,12 +2,14 @@
 
 let path = require('path');
 let webpack = require('webpack');
+let OpenBrowserPlugin = require('open-browser-webpack-plugin');
 let HappyPack = require('happypack');   //loader 多进程处理
 
 let getHappyPackConfig = require('./happypack');
 
 let devConfig = require('./webpack.base.config');
 let config = require('../config');
+const url = `localhost:${config.dev.port}{{publicPath}}`;
 
 devConfig.module.rules.unshift({
     test: /\.less$/,
@@ -41,6 +43,7 @@ devConfig.plugins = (devConfig.plugins || []).concat([
     }),
 
     new webpack.NoEmitOnErrorsPlugin(),
+    new OpenBrowserPlugin({ url: url })
 ]);
 
 // see https://webpack.github.io/docs/webpack-dev-server.html
@@ -51,6 +54,10 @@ devConfig.devServer = {
     port: config.dev.port,
     // #https://github.com/webpack/webpack-dev-server/issues/882
     disableHostCheck: true,
+    headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+    },
     inline: true,
     // 解决开发模式下 在子路由刷新返回 404 的情景
     historyApiFallback: {

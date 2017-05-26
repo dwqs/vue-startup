@@ -2,7 +2,6 @@
 
 let webpack = require('webpack');
 let WebpackDevServer = require('webpack-dev-server');
-let opn = require('opn');
 let ora = require('ora');
 let gutil = require('gulp-util');
 
@@ -12,10 +11,8 @@ let config = require('../config/index');
 let compiler = webpack(webpackDevConfig);
 let server = new WebpackDevServer(compiler, webpackDevConfig.devServer);
 
-const url = `localhost:${config.dev.port}{{publicPath}}`;
 const env = process.env.NODE_ENV || 'development';
 
-let browserIsOpen = false;
 let spinner = ora({
     text: 'Webpack 正在编译...',
     color: "green"
@@ -43,10 +40,6 @@ compiler.plugin('done', (stats) => {
         spinner.text = gutil.colors.green(`Webpack 编译成功, open browser to visit ${url}\n`);
         spinner.succeed();
         spinner = null;
-    }
-    if(!browserIsOpen && env === 'development'){
-        browserIsOpen = true;
-        opn(url);
     }
 });
 

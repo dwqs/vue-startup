@@ -8,6 +8,7 @@ let ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 let CleanWebpackPlugin = require('clean-webpack-plugin');
 let WebpackMd5Hash = require('webpack-md5-hash');
 let os = require('os');
+let CompressionPlugin = require("compression-webpack-plugin");
 let HappyPack = require('happypack');   //loader 多进程处理
 
 let getHappyPackConfig = require('./happypack');
@@ -75,6 +76,15 @@ prodConfig.plugins = (prodConfig.plugins || []).concat([
     new webpack.optimize.CommonsChunkPlugin({
         name: "vendor",
         filename: "vendor.js"
+    }),
+
+    // gzip
+    new CompressionPlugin({
+        asset: "[path].gz[query]",
+        algorithm: "gzip",
+        test: /\.(js|html|less)$/,
+        threshold: 10240,
+        minRatio: 0.8
     }),
 
     new ParallelUglifyPlugin({
