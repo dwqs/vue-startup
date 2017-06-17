@@ -89,10 +89,6 @@ module.exports = {
             loaders: ['babel-loader']
         })),
 
-        //copy assets
-        new CopyWebpackPlugin([
-            {context: '../src', from: 'assets/**/*', to: path.resolve(__dirname, '../{{path}}')}
-        ]),
 
         // https://github.com/ampedandwired/html-webpack-plugin
         new HtmlWebpackPlugin({

@@ -37,6 +37,11 @@ prodConfig.plugins = (prodConfig.plugins || []).concat([
         dry: false
     }),
 
+    //copy assets
+    new CopyWebpackPlugin([
+        {context: '../src', from: 'assets/**/*', to: path.resolve(__dirname, '../{{path}}'), force: true}
+    ]),
+
     new webpack.DefinePlugin({
         'process.env': config.build.env
     }),
