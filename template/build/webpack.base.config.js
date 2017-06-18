@@ -79,6 +79,11 @@ module.exports = {
         }),
         {{/jquery}}
 
+        //copy assets
+        new CopyWebpackPlugin([
+            {context: '../src', from: 'assets/**/*', to: path.resolve(__dirname, '../{{path}}'), force: true}
+        ]),
+
         new HappyPack(getHappyPackConfig({
             id: 'vue',
             loaders: ['vue-loader']
