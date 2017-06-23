@@ -101,7 +101,8 @@ prodConfig.plugins = (prodConfig.plugins || []).concat([
             mangle: true
         }
     }),
-
+    
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new WebpackMd5Hash()
 ]);
 
