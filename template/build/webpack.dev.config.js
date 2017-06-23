@@ -63,7 +63,10 @@ devConfig.devServer = {
     historyApiFallback: {
         index: config.dev.assetsPublicPath
     },
-    stats: 'normal',
+    stats: {
+        colors: true,
+        modules: false
+    },
     contentBase: config.dev.contentBase,
     publicPath: config.dev.assetsPublicPath
 };
