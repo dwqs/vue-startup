@@ -1,6 +1,6 @@
 # vue-startup
 
-A template with webpack 2 + vuejs 2 setup for projects startup.
+A template with webpack 3 + vuejs 2 setup for projects startup.
 
 ## 安装
 
