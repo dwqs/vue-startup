@@ -12,6 +12,7 @@ let compiler = webpack(webpackDevConfig);
 let server = new WebpackDevServer(compiler, webpackDevConfig.devServer);
 
 const env = process.env.NODE_ENV || 'development';
+const url = `localhost:${config.dev.port}/`;
 
 let spinner = ora({
     text: 'Webpack 正在编译...',
