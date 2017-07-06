@@ -9,7 +9,7 @@ let getHappyPackConfig = require('./happypack');
 
 let devConfig = require('./webpack.base.config');
 let config = require('../config');
-const url = `localhost:${config.dev.port}{{publicPath}}`;
+const url = `http://localhost:${config.dev.port}{{publicPath}}`;
 
 devConfig.module.rules.unshift({
     test: /\.less$/,
