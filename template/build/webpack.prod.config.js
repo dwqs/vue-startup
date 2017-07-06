@@ -97,7 +97,7 @@ prodConfig.plugins = (prodConfig.plugins || []).concat([
                 drop_console: true
             },
             comments: false,
-            sourceMap: true,
+            sourceMap: false,
             mangle: true
         }
     }),
@@ -117,6 +117,5 @@ module.exports = Object.assign({},prodConfig,{
         publicPath: config.build.assetsPublicPath,
         sourceMapFilename: '[file].map',
         chunkFilename: "[name].[chunkhash:8].js"
-    },
-    devtool:'source-map'
+    }
 });
