@@ -75,7 +75,11 @@ prodConfig.plugins = (prodConfig.plugins || []).concat([
 
     new webpack.optimize.CommonsChunkPlugin({
         name: "vendor",
-        filename: "vendor.js"
+        minChunks: ({resource}) => (
+            resource &&
+            resource.indexOf('node_modules') >= 0 &&
+            resource.match(/\.js$/)
+        )
     }),
 
     // gzip
@@ -97,7 +101,7 @@ prodConfig.plugins = (prodConfig.plugins || []).concat([
                 drop_console: true
             },
             comments: false,
-            sourceMap: false,
+            sourceMap: true,
             mangle: true
         }
     }),
@@ -108,13 +112,14 @@ prodConfig.plugins = (prodConfig.plugins || []).concat([
 
 module.exports = Object.assign({},prodConfig,{
     entry: {
-        app: path.resolve(__dirname, '../src/page/index.js'),
-        vendor: ['vue', 'vuex', 'vue-router', 'vuex-router-sync']
+        app: path.resolve(__dirname, '../src/page/index.js')
     },
     output: {
         filename: "[name].[chunkhash:8].js",
         path: config.build.assetsRoot,
         publicPath: config.build.assetsPublicPath,
-        chunkFilename: "[name].[chunkhash:8].js"
+        sourceMapFilename: "[file].map",
+        chunkFilename: "[name].[chunkhash:8].js",
+        devtool: "source-map"
     }
 });
