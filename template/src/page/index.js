@@ -12,9 +12,9 @@ import store from '../store/index';
 
 Vue.use(VueRouter);
 
-// on-demand loaded chunk
-const Info = r => require.ensure([], () => r(require('@components/info/')), 'info');
-const App = r => require.ensure([], () => r(require('../general/app/index')), 'app');
+// dynamic import for on-demand loaded chunk
+const Info = () => import(/* webpackChunkName: "info" */ '@components/info/');
+const App = () => import(/* webpackChunkName: "app1" */ '../general/app/index');
 
 const Outer = { template: '<router-view></router-view>' };
 
