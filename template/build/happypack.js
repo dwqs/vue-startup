@@ -8,7 +8,6 @@ module.exports = function (opts){
     return {
         id: opts.id,
         threadPool: happyThreadPool,
-        cache: true,
         verbose: true,
         loaders: opts.loaders,
     }
