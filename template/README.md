@@ -18,7 +18,7 @@
 
 ## 其它脚本
 
-* `npm run ilint`: eslint 检查, 会根据 .eslintrc 的配置去检查 `src` 目录下的 `.vue` 和 `.js` 文件. 项目中加入了 `pre-push hooks`, 每次 `push` 之前都会自动运行该脚本. 可以参考 [doc](lint.org/docs/rules/) 自定义配置.
+* `npm run ilint`: eslint 检查, 会根据 .eslintrc 的配置去检查 `src` 目录下的 `.vue` 和 `.js` 文件. 项目中加入了 `pre-push hooks`, 每次 `push` 之前都会自动运行该脚本. 可以参考 [doc](http://eslint.org/docs/rules/) 自定义配置.
 * `npm run fix`: eslint 自动修复
 * `npm run build`: 生产环境 build
 
@@ -49,6 +49,7 @@
 
 ## 其它
 
+* **window.PREFIX**: api请求前缀, 在 config/index.js#prefix 中配置
 * 脚手架默认加入了两个别名: `@src` 和 `@components`. 前者指向 `src` 目录, 后者指向 `src/components` 目录, 便于引入资源:
 
 ```
