@@ -4,7 +4,7 @@ let path = require('path');
 let webpack = require('webpack');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let CopyWebpackPlugin = require('copy-webpack-plugin');
-let HappyPack = require('happypack');   //loader 多进程处理
+let HappyPack = require('happypack');
 
 let getHappyPackConfig = require('./happypack');
 
