@@ -97,7 +97,13 @@ module.exports = {
 
         new HappyPack(getHappyPackConfig({
             id: 'vue',
-            loaders: ['vue-loader']
+            loaders: [{
+                loader: 'vue-loader',
+                options: {
+                    // https://github.com/vuejs/vue-loader/issues/863
+                    esModule: false
+                }
+            }]
         })),
 
         new HappyPack(getHappyPackConfig({
