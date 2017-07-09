@@ -1,4 +1,4 @@
-'use sreict';
+'use strict';
 
 let HappyPack = require('happypack');
 let os = require('os');
