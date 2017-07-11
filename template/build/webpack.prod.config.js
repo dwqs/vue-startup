@@ -9,7 +9,8 @@ let CleanWebpackPlugin = require('clean-webpack-plugin');
 let WebpackMd5Hash = require('webpack-md5-hash');
 let os = require('os');
 let CompressionPlugin = require("compression-webpack-plugin");
-let HappyPack = require('happypack');   //loader 多进程处理
+let HappyPack = require('happypack');
+let ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 let getHappyPackConfig = require('./happypack');
 
@@ -103,6 +104,25 @@ prodConfig.plugins = (prodConfig.plugins || []).concat([
             comments: false,
             sourceMap: true,
             mangle: true
+        }
+    }),
+
+    // image minifying
+    new ImageminPlugin({
+        test: path.resolve(__dirname, '../{{path}}/assets'),
+        optipng: {
+            optimizationLevel: 9
+        },
+        gifsicle: {
+            optimizationLevel: 3
+        },
+        jpegtran: {
+            progressive: false
+        },
+        svgo: {},
+        pngquant: {
+            floyd: 0.5,
+            speed: 3
         }
     }),
     
