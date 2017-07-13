@@ -23,7 +23,7 @@ devConfig.plugins = (devConfig.plugins || []).concat([
     new webpack.HotModuleReplacementPlugin(),
 
     new webpack.DefinePlugin({
-        'process.env': config.dev.env
+        'process.env': JSON.stringify(config.dev.env)
     }),
 
     new HappyPack(getHappyPackConfig({
