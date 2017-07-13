@@ -98,8 +98,8 @@ module.exports = {
         new HappyPack(getHappyPackConfig({
             id: 'vue',
             loaders: [{
-                loader: 'vue-loader',
-                options: {
+                path: 'vue-loader',
+                query: {
                     // https://github.com/vuejs/vue-loader/issues/863
                     esModule: false
                 }

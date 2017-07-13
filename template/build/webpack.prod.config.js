@@ -50,7 +50,7 @@ prodConfig.plugins = (prodConfig.plugins || []).concat([
         id: 'less-prod',
         loaders: ['css-loader', {
             path: 'postcss-loader',
-            options: {
+            query: {
                 sourceMap: "inline"
             }
         }, 'less-loader']
@@ -60,7 +60,7 @@ prodConfig.plugins = (prodConfig.plugins || []).concat([
         id: 'css-prod',
         loaders: ['css-loader', {
             path: 'postcss-loader',
-            options: {
+            query: {
                 sourceMap: "inline"
             }
         }]
