@@ -45,10 +45,14 @@ module.exports = {
           "message" : "the host name for Ajax request",
           "default" : ''
       },
+      "imageminifying": {
+          "type": "confirm",
+          "message": "Need image minifying in production?"
+      },
       "jquery": {
           "type": "confirm",
           "message": "Need jQuery(2.1.0, auto import by cdn)?"
       }
   },
-  "completeMessage": "To get started:\n\n  cd {{destDirName}}\n  npm install\n  npm run dll\n  npm run dev\n\nDocumentation can be found at https://github.com/dwqs/vue-startup"
+  "completeMessage": "To get started:\n\n  cd {{destDirName}}\n  npm install\n  npm run dll\n  npm run dev\n\nDocumentation can be found at https://github.com/fmfe/vue-startup"
 }
