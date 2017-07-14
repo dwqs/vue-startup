@@ -3,7 +3,7 @@
 let path = require('path');
 let webpack = require('webpack');
 let OpenBrowserPlugin = require('open-browser-webpack-plugin');
-let HappyPack = require('happypack');   //loader 多进程处理
+let HappyPack = require('happypack');   
 
 let getHappyPackConfig = require('./happypack');
 

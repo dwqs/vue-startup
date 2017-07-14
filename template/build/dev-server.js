@@ -15,7 +15,7 @@ const env = process.env.NODE_ENV || 'development';
 const url = `localhost:${config.dev.port}/`;
 
 let spinner = ora({
-    text: 'Webpack 正在编译...',
+    text: 'Webpack 正在编译...\n',
     color: "green"
 }).start();
 
