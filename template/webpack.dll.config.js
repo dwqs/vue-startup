@@ -6,7 +6,7 @@ const webpack = require('webpack');
 module.exports = {
     entry: {
         vendor: [
-            'vue', 'vuex', 'vue-router', 'vuex-router-sync', 'babel-runtime'
+            'vue', 'vuex', 'vue-router', 'vuex-router-sync', 'babel-polyfill'
         ]
     },
     output: {
