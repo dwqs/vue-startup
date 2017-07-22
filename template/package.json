@@ -6,11 +6,11 @@
   "license": "MIT",
   "scripts": {
     "prepush": "npm run ilint -q",
-    "dll": "./node_modules/.bin/webpack --config webpack.dll.config.js",
-    "dev": "./node_modules/.bin/cross-env NODE_ENV=development node ./build/dev-server.js",
-    "build": "./node_modules/.bin/cross-env NODE_ENV=production ./node_modules/.bin/webpack --config ./build/webpack.prod.config.js --progress --hide-modules",
-    "ilint": "./node_modules/.bin/eslint src/**/*.js src/**/*.vue",
-    "fix": "./node_modules/.bin/eslint --fix src/**/*.js src/**/*.vue"
+    "dll": "npx webpack --config webpack.dll.config.js",
+    "dev": "npx cross-env NODE_ENV=development node ./build/dev-server.js",
+    "build": "npx cross-env NODE_ENV=production npx webpack --config ./build/webpack.prod.config.js --progress --hide-modules",
+    "ilint": "npx eslint src/**/*.js src/**/*.vue",
+    "fix": "npx eslint --fix src/**/*.js src/**/*.vue"
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
@@ -62,7 +62,7 @@
     "webpack-parallel-uglify-plugin": "^0.4.2"
   },
   "engines": {
-    "node": ">= 5.0.0",
-    "npm": ">= 3.0.0"
+    "node": ">= 6.0.0",
+    "npm": ">= 5.2.0"
   }
 }
