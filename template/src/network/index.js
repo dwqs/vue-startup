@@ -7,7 +7,7 @@ import axios from 'axios';
 console.log('api prefix', window.PREFIX);
 
 const instance = axios.create({
-    baseURL: window.PREFIX ? window.PREFIX : 'https://api.github.com',
+    baseURL: window.PREFIX,
     // withCredentials: true,
     headers: {
         'Content-Type': 'application/json'
