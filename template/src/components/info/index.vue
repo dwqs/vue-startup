@@ -19,4 +19,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+    h2{
+        margin: 10px;
+        font-size: 20px;
+    }
+</style>
