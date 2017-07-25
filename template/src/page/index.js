@@ -18,7 +18,7 @@ Vue.use(VueRouter);
 
 // dynamic import for on-demand loaded chunk
 const Info = () => import(/* webpackChunkName: "info" */ '@components/info/');
-const App = () => import(/* webpackChunkName: "app1" */ '../general/app/index');
+const App = () => import(/* webpackChunkName: "main" */ '../general/app/index');
 
 const Outer = { template: '<router-view></router-view>' };
 
