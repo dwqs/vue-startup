@@ -5,16 +5,16 @@ let path = require('path');
 module.exports =  {
     dev:{
         env: 'development',
-        assetsRoot: path.resolve(__dirname, '../{{path}}'),
-        assetsPublicPath: '{{publicPath}}',
-        contentBase: path.resolve(__dirname, '../{{path}}'),
+        assetsRoot: path.resolve(__dirname, '../dist'),
+        assetsPublicPath: '/',
+        contentBase: path.resolve(__dirname, '../dist'),
         port: {{port}},
         prefix: '{{prefix}}'
     },
     build:{
         env: 'production',
-        assetsRoot: path.resolve(__dirname, '../{{path}}'),
-        assetsPublicPath: '{{publicPath}}',
+        assetsRoot: path.resolve(__dirname, '../dist'),
+        assetsPublicPath: '/',
         prefix: '{{prefix}}'
     }
 }
