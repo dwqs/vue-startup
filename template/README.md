@@ -37,7 +37,8 @@
     |——lib                  // 公共库
     |——network              // 网络请求
     |——page                 // 项目入口
-    |——store                // store 入口
+    |--mobx                 // mobx model 入口(state === mobx)
+    |——vuex                 // vuex store 入口(state === vuex)
     |——index.html           // 挂载的静态文件
   |——.eslintrc              // eslint 配置
   |——.babelrc               // babel 配置
@@ -69,7 +70,7 @@ import Hello from '../../../../components/Hello/index.vue'; # 引入组件
 * 脚手架默认加入了预处理器 `less`, 建议 less 文件中的类嵌套不超过三层
 * 对 `store` 的更改, 建议严格遵照单项数据流
 * 脚手架默认开启全局的严格模式, 不需要在组件或 js 文件中进行 `use strict` 声明, 否则 eslint 会报错
-* 启动脚本时, Webpack 会将静态资源(`src/assets`)目录移动到 `dist` (默认的 `output.path`) 目录, 方便在组件中引入:
+* 启动脚本时, Webpack 会将静态资源(`src/assets`)目录移动到 `dist` 目录, 方便在组件中引入:
 
 ```
 # src/general/test/test1/test2/index.vue
