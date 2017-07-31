@@ -16,7 +16,7 @@ const getters = {
 }
 
 const actions = {
-    async changeTime({commit}, state){
+    async changeTime({commit}, payload){
         const [err, data] =  await awaitTo(api.getIndex());
         console.log('changeTime', data);
 
