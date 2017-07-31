@@ -34,7 +34,7 @@ prodConfig.module.rules.unshift({
 });
 
 prodConfig.plugins = (prodConfig.plugins || []).concat([
-    new CleanWebpackPlugin(['{{path}}'], {
+    new CleanWebpackPlugin(['dist'], {
         root: path.join(__dirname, '../'),
         verbose: true,
         dry: false
@@ -115,7 +115,7 @@ prodConfig.plugins = (prodConfig.plugins || []).concat([
     {{#imageminifying}}
     // image minifying
     new ImageminPlugin({
-        test: path.resolve(__dirname, '../{{path}}/assets'),
+        test: path.resolve(__dirname, '../dist/assets'),
         optipng: {
             optimizationLevel: 9
         },

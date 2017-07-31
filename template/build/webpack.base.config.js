@@ -63,11 +63,6 @@ module.exports = {
             'vue$': 'vue/dist/vue.js'
         }
     },
-    {{#jquery}}
-    externals: {
-       jquery: 'jQuery'
-    },
-    {{/jquery}}
 
     resolveLoader: {
         modules: [path.join(__dirname, '../node_modules')]
@@ -78,13 +73,6 @@ module.exports = {
     },
 
     plugins:[
-        {{#jquery}}
-        new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery",
-            "window.jQuery": "jquery"
-        }),
-        {{/jquery}}
 
         new webpack.DefinePlugin({
             'window.PREFIX': JSON.stringify(apiPrefix)
@@ -92,7 +80,7 @@ module.exports = {
 
         //copy assets
         new CopyWebpackPlugin([
-            {context: '../src', from: 'assets/**/*', to: path.resolve(__dirname, '../{{path}}'), force: true}
+            {context: '../src', from: 'assets/**/*', to: path.resolve(__dirname, '../dist'), force: true}
         ]),
 
         new HappyPack(getHappyPackConfig({
