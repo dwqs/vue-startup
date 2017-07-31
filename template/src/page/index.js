@@ -26,7 +26,7 @@ const router = new VueRouter({
     mode: 'history',
     routes: [
         {
-            path: '{{publicPath}}',
+            path: '/',
             component: Outer,
             children: [
                 // 嵌套路由 https://github.com/vuejs/vue-router/blob/next-doc/docs/en/advanced-routing/nested.md
