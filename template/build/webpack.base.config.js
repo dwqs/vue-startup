@@ -72,6 +72,10 @@ module.exports = {
         hints: false
     },
 
+    externals: {
+        'babel-polyfill': 'window'
+    },
+
     plugins:[
 
         new webpack.DefinePlugin({

@@ -16,7 +16,7 @@ let vendors = [
 
 module.exports = {
     entry: {
-        vendor: vendors.concat('vue', 'vue-router', 'babel-polyfill', 'async-await-error-handling', 'axios')
+        vendor: vendors.concat('vue', 'vue-router', 'async-await-error-handling', 'axios')
     },
     output: {
         path: path.join(__dirname, './dist'),
