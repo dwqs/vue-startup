@@ -1,9 +1,18 @@
 {
-  "presets": ["es2015", "stage-2"],
+  "presets": [
+    [
+      "env", {
+        "targets": {
+          "browsers": ["last 2 versions", "safari > 7"]
+        },
+        "modules": false,
+        "useBuiltIns": "entry",
+        "loose": true
+      }
+    ],
+    "stage-2"
+  ],
   {{#if_eq state 'mobx'}}
-  "plugins": ["transform-runtime", "transform-decorators-legacy", "transform-class-properties"]
-  {{/if_eq}}
-  {{#if_eq state 'vuex'}}
-  "plugins": ["transform-runtime"]
+  "plugins": ["transform-decorators-legacy", "transform-class-properties"]
   {{/if_eq}}
 }
