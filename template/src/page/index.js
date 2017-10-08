@@ -1,4 +1,5 @@
 import './reset.css';
+import 'babel-polyfill';
 
 import Vue from 'vue';
 import VueRouter from 'vue-router';
@@ -7,9 +8,12 @@ import { sync } from 'vuex-router-sync';
 {{/if_eq}}
 {{#if_eq state 'mobx'}}
 import VueMobx from 'vue-mobx';
-import {toJS, useStrict} from 'mobx';
+import { toJS, useStrict, isObservable } from 'mobx';
 
-Vue.use(VueMobx, {toJS});
+Vue.use(VueMobx, {
+    toJS,
+    isObservable
+});
 useStrict(true);
 {{/if_eq}}
 
