@@ -1,15 +1,13 @@
-'use strict';
-
 const path = require('path');
 const webpack = require('webpack');
 
 {{#if_eq state 'vuex'}}
-let vendors = [
+const vendors = [
     'vuex', 'vuex-router-sync'
 ];
 {{/if_eq}}
 {{#if_eq state 'mobx'}}
-let vendors = [
+const vendors = [
     'mobx', 'vue-mobx'
 ];
 {{/if_eq}}
@@ -26,9 +24,9 @@ module.exports = {
     },
     plugins: [
         new webpack.DllPlugin({
-          path: path.join(__dirname, './dist', '[name]-manifest.json'),
-          // 和 output.library 一样即可
-          name: '[name]_library'
-      })
+            path: path.join(__dirname, './dist', '[name]-manifest.json'),
+            // 和 output.library 一样即可
+            name: '[name]_library'
+        })
     ]
-}
+};
