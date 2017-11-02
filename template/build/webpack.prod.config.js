@@ -1,23 +1,21 @@
-'use strict';
-
-let path = require('path');
-let webpack = require('webpack');
-let ExtractTextPlugin = require("extract-text-webpack-plugin");
-let OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
-let ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
-let CleanWebpackPlugin = require('clean-webpack-plugin');
-let WebpackMd5Hash = require('webpack-md5-hash');
-let os = require('os');
-let CompressionPlugin = require("compression-webpack-plugin");
-let HappyPack = require('happypack');
+const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const WebpackMd5Hash = require('webpack-md5-hash');
+const os = require('os');
+const CompressionPlugin = require('compression-webpack-plugin');
+const HappyPack = require('happypack');  
 {{#imageminifying}}
-let ImageminPlugin = require('imagemin-webpack-plugin').default;
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 {{/imageminifying}}
 
-let getHappyPackConfig = require('./happypack');
+const getHappyPackConfig = require('./happypack');
 
-let prodConfig = require('./webpack.base.config');
-let config = require('../config');
+const prodConfig = require('./webpack.base.config');
+const config = require('../config');
 
 prodConfig.module.rules.unshift({
     test:/\.less$/,
@@ -41,13 +39,13 @@ prodConfig.plugins = (prodConfig.plugins || []).concat([
     }),
 
     new webpack.DefinePlugin({
-        "process.env": {
-            "NODE_ENV": JSON.stringify(config.build.env)
+        'process.env': {
+            'NODE_ENV': JSON.stringify(config.build.env)
         }
     }),
 
     new ExtractTextPlugin({
-        filename: "[name].[contenthash:8].css"
+        filename: '[name].[contenthash:8].css'
     }),
 
     new HappyPack(getHappyPackConfig({
@@ -80,7 +78,7 @@ prodConfig.plugins = (prodConfig.plugins || []).concat([
     }),
 
     new webpack.optimize.CommonsChunkPlugin({
-        name: "vendor",
+        name: 'vendor',
         minChunks: ({resource}) => (
             resource &&
             resource.indexOf('node_modules') >= 0 &&
@@ -136,16 +134,16 @@ prodConfig.plugins = (prodConfig.plugins || []).concat([
     new WebpackMd5Hash()
 ]);
 
-module.exports = Object.assign({},prodConfig,{
+module.exports = Object.assign({}, prodConfig, {
     entry: {
         app: path.resolve(__dirname, '../src/page/index.js')
     },
     output: {
-        filename: "[name].[chunkhash:8].js",
+        filename: '[name].[chunkhash:8].js',
         path: config.build.assetsRoot,
         publicPath: config.build.assetsPublicPath,
-        sourceMapFilename: "[file].map",
-        chunkFilename: "[name].[chunkhash:8].js"
+        sourceMapFilename: '[file].map',
+        chunkFilename: '[name].[chunkhash:8].js'
     },
     devtool: 'source-map'
 });

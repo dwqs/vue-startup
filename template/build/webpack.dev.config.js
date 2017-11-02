@@ -1,14 +1,12 @@
-'use strict';
+const path = require('path');
+const webpack = require('webpack');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
+const HappyPack = require('happypack'); 
 
-let path = require('path');
-let webpack = require('webpack');
-let OpenBrowserPlugin = require('open-browser-webpack-plugin');
-let HappyPack = require('happypack');   
+const getHappyPackConfig = require('./happypack');
 
-let getHappyPackConfig = require('./happypack');
-
-let devConfig = require('./webpack.base.config');
-let config = require('../config');
+const devConfig = require('./webpack.base.config');
+const config = require('../config');
 const url = `http://localhost:${config.dev.port}`;
 
 devConfig.module.rules.unshift({
@@ -39,9 +37,9 @@ devConfig.plugins = (devConfig.plugins || []).concat([
     })),
 
     new webpack.DllReferencePlugin({
-      context: __dirname,
-      //引入 dll 生成的 manifest 文件
-      manifest: require('../dist/vendor-manifest.json')
+        context: __dirname,
+        // 引入 dll 生成的 manifest 文件
+        manifest: require('../dist/vendor-manifest.json')
     }),
 
     new webpack.NoEmitOnErrorsPlugin(),
@@ -73,7 +71,7 @@ devConfig.devServer = {
     publicPath: config.dev.assetsPublicPath
 };
 
-module.exports = Object.assign({},devConfig,{
+module.exports = Object.assign({}, devConfig, {
     entry: {
         app:[
             'webpack/hot/dev-server',
@@ -82,11 +80,11 @@ module.exports = Object.assign({},devConfig,{
         ]
     },
     output: {
-        filename: "[name].js",
+        filename: '[name].js',
         path: config.dev.assetsRoot,
         publicPath: config.dev.assetsPublicPath,
         sourceMapFilename: '[file].map',
-        chunkFilename: "[name].js"
+        chunkFilename: '[name].js'
     },
     devtool: 'source-map'
 });

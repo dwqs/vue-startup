@@ -1,9 +1,7 @@
-'use strict';
+const path = require('path');
 
-let path = require('path');
-
-module.exports =  {
-    dev:{
+module.exports = {
+    dev: {
         env: 'development',
         assetsRoot: path.resolve(__dirname, '../dist'),
         assetsPublicPath: '/',
@@ -11,7 +9,7 @@ module.exports =  {
         port: {{port}},
         prefix: '{{prefix}}'
     },
-    build:{
+    build: {
         env: 'production',
         assetsRoot: path.resolve(__dirname, '../dist'),
         assetsPublicPath: '/',
