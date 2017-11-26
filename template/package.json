@@ -13,18 +13,19 @@
     "fix": "npx eslint --fix src/**/*.js src/**/*.vue"
   },
   "dependencies": {
-    "vue": "^2.4.4",
-    "vue-router": "^2.7.0",
+    "vue": "^2.5.8"
+    "vue-router": "^3.0.1",
     {{#if_eq state 'vuex'}}
-    "vuex": "^2.4.1",
-    "vuex-router-sync": "^4.3.2",
+    "vuex": "^3.0.1",
+    "vuex-router-sync": "^5.0.0"
     {{/if_eq}}
     {{#if_eq state 'mobx'}}
     "mobx": "^3.3.1",
     "vue-mobx": "^1.3.2",
     {{/if_eq}}
     "async-await-error-handling": "^0.5.2",
-    "axios": "^0.16.2"
+    "axios": "^0.16.2",
+    "normalize.css": "^7.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.5",
@@ -64,10 +65,10 @@
     "precss": "^2.0.0",
     "husky": "^0.14.3",
     "url-loader": "^0.6.2",
-    "vue-loader": "^13.0.5",
+    "vue-loader": "^13.5.0",
     "vue-style-loader": "^3.0.3",
-    "vue-template-compiler": "^2.4.4",
-    "webpack": "^3.6.0",
+    "vue-template-compiler": "^2.5.8",
+    "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.1",
     "webpack-md5-hash": "^0.0.5",
     "webpack-parallel-uglify-plugin": "^1.0.0"

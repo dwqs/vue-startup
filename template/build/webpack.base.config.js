@@ -58,7 +58,7 @@ module.exports = {
         alias: {
             '@src': path.resolve(__dirname, '../src'),
             '@components': path.resolve(__dirname, '../src/components'),
-            'vue$': 'vue/dist/vue.js'
+            'vue$': 'vue/dist/vue.esm.js'
         }
     },
 
@@ -82,13 +82,14 @@ module.exports = {
 
         new HappyPack(getHappyPackConfig({
             id: 'vue',
-            loaders: [{
-                path: 'vue-loader',
-                query: {
-                    // https://github.com/vuejs/vue-loader/issues/863
-                    esModule: false
-                }
-            }]
+            loaders: ['vue-loader']
+            // loaders: [{
+            //     path: 'vue-loader',
+            //     query: {
+            //         // https://github.com/vuejs/vue-loader/issues/863
+            //         esModule: false
+            //     }
+            // }]
         })),
 
         new HappyPack(getHappyPackConfig({
