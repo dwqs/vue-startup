@@ -6,9 +6,9 @@ const vendors = [
     'vuex', 'vuex-router-sync'
 ];
 {{/if_eq}}
-{{#if_eq state 'mobx'}}
+{{#if_eq state 'revue'}}
 const vendors = [
-    'mobx', 'vue-mobx'
+    'revuejs'
 ];
 {{/if_eq}}
 

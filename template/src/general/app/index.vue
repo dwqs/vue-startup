@@ -42,21 +42,28 @@
         }
     };
     {{/if_eq}}
-    {{#if_eq state 'mobx'}}
-    import {connect} from 'vue-mobx';
-    import timeModel from '@src/mobx/time';
+    {{#if_eq state 'revue'}}
+    import { mergeActions, mergeProps } from 'revuejs';
 
-    const indexComponent = {
+    export default{
         data () {
             return {
                 title: 'vuejs 2 + webpack 3'
             };
         },
+
+        computed: {
+            ...mergeProps(['time.curTime'])
+        },
+
+        methods: {
+            ...mergeActions(['time.changeTime'])
+        },
+
         components: {
             Hello
         }
-    }
-    export default connect({timeModel})(indexComponent)
+    };
     {{/if_eq}}
 </script>
 

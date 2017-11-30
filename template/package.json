@@ -13,15 +13,14 @@
     "fix": "npx eslint --fix src/**/*.js src/**/*.vue"
   },
   "dependencies": {
-    "vue": "^2.5.8"
+    "vue": "^2.5.8",
     "vue-router": "^3.0.1",
     {{#if_eq state 'vuex'}}
     "vuex": "^3.0.1",
     "vuex-router-sync": "^5.0.0"
     {{/if_eq}}
-    {{#if_eq state 'mobx'}}
-    "mobx": "^3.3.1",
-    "vue-mobx": "^1.3.2",
+    {{#if_eq state 'revue'}}
+    "revuejs": "^0.7.7",
     {{/if_eq}}
     "async-await-error-handling": "^0.5.2",
     "axios": "^0.16.2",
@@ -33,10 +32,6 @@
     "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.2",
     "babel-polyfill": "^6.26.0",
-    {{#if_eq state 'mobx'}}
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    {{/if_eq}}
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-2": "^6.24.1",
     "clean-webpack-plugin": "^0.1.17",
