@@ -6,15 +6,8 @@ import VueRouter from 'vue-router';
 {{#if_eq state 'vuex'}}
 import { sync } from 'vuex-router-sync';
 {{/if_eq}}
-{{#if_eq state 'mobx'}}
-import VueMobx from 'vue-mobx';
-import { toJS, useStrict, isObservable } from 'mobx';
-
-Vue.use(VueMobx, {
-    toJS,
-    isObservable
-});
-useStrict(true);
+{{#if_eq state 'revue'}}
+import modules from '../modules/index';
 {{/if_eq}}
 
 const env = process.env.NODE_ENV || 'development';
@@ -59,6 +52,9 @@ const app = new Vue({
     router,
     {{#if_eq state 'vuex'}}
     store,
+    {{/if_eq}}
+    {{#if_eq state 'revue'}}
+    modules,
     {{/if_eq}}
     ...Outer
 });
