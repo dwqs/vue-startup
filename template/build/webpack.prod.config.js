@@ -74,7 +74,8 @@ prodConfig.plugins = (prodConfig.plugins || []).concat([
         cssProcessorOptions: {
             safe: true
         },
-        assetNameRegExp: /\.less$/g
+        cssProcessor: require('cssnano'),
+        assetNameRegExp: /\.less|\.css$/g
     }),
 
     new webpack.optimize.CommonsChunkPlugin({
