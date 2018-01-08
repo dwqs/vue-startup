@@ -48,11 +48,7 @@ module.exports = {
           "required": false,
           "message" : "the host name for Ajax request",
           "default" : ''
-      },
-      "imageminifying": {
-          "type": "confirm",
-          "message": "Need image minifying in production?"
-      },
+      }
   },
   "filters": {
      "src/vuex/**/*": "state === 'vuex'",
