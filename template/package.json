@@ -10,7 +10,8 @@
     "dev": "npx cross-env NODE_ENV=development node ./build/dev-server.js",
     "build": "npx cross-env NODE_ENV=production npx webpack --config ./build/webpack.prod.config.js --progress --hide-modules",
     "ilint": "npx eslint src/**/*.js src/**/*.vue",
-    "fix": "npx eslint --fix src/**/*.js src/**/*.vue"
+    "fix": "npx eslint --fix src/**/*.js src/**/*.vue",
+    "commitmsg": "npx commitlint -e"
   },
   "dependencies": {
     "vue": "^2.5.8",
@@ -27,6 +28,9 @@
     "normalize.css": "^7.0.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^5.2.8",
+    "@commitlint/config-angular": "^5.1.1",
+    "cz-conventional-changelog": "^2.1.0",
     "autoprefixer": "^7.1.5",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
@@ -67,5 +71,10 @@
   "engines": {
     "node": ">= 6.0.0",
     "npm": ">= 5.2.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
