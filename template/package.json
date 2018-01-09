@@ -8,7 +8,7 @@
     "prepush": "npm run ilint -q",
     "dll": "npx webpack --config webpack.dll.config.js",
     "dev": "npx cross-env NODE_ENV=development node ./build/dev-server.js",
-    "build": "npx cross-env NODE_ENV=production npx webpack --config ./build/webpack.prod.config.js --progress --hide-modules",
+    "build": "npx cross-env NODE_ENV=production npx webpack --config ./build/webpack.prod.config.js --hide-modules",
     "ilint": "npx eslint src/**/*.js src/**/*.vue",
     "fix": "npx eslint --fix src/**/*.js src/**/*.vue",
     "commitmsg": "npx commitlint -e"
@@ -56,7 +56,6 @@
     "less-loader": "^4.0.5",
     "open-browser-webpack-plugin": "^0.0.5",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
-    "ora": "^1.3.0",
     "postcss-loader": "^2.0.6",
     "husky": "^0.14.3",
     "url-loader": "^0.6.2",
@@ -66,7 +65,8 @@
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.1",
     "webpack-md5-hash": "^0.0.5",
-    "webpack-parallel-uglify-plugin": "^1.0.0"
+    "webpack-parallel-uglify-plugin": "^1.0.0",
+    "progress-bar-webpack-plugin": "^1.10.0"
   },
   "engines": {
     "node": ">= 6.0.0",

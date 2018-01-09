@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const ora = require('ora');
 const gutil = require('gulp-util');
 
 const webpackDevConfig = require('./webpack.dev.config.js');
@@ -12,18 +11,8 @@ const server = new WebpackDevServer(compiler, webpackDevConfig.devServer);
 const env = process.env.NODE_ENV || 'development';
 const url = `localhost:${config.dev.port}/`;
 
-let spinner = ora({
-    text: 'Webpack 正在编译...',
-    color: 'green'
-}).start();
-
 function compiledFail () {
-    if (spinner) {
-        spinner.color = 'red';
-        spinner.text = gutil.colors.white('Webpack 编译失败: \n');
-        spinner.fail();
-        spinner = null;
-    }
+    console.log(gutil.colors.white('Webpack 编译失败: \n'));
 }
 
 server.listen(config.dev.port, 'localhost', (err) => {
@@ -35,11 +24,7 @@ server.listen(config.dev.port, 'localhost', (err) => {
 
 // 编译完成
 compiler.plugin('done', (stats) => {
-    if (spinner) {
-        spinner.text = gutil.colors.green(`Webpack 编译成功, open browser to visit ${url}\n`);
-        spinner.succeed();
-        spinner = null;
-    }
+    console.log(gutil.colors.green(`Webpack 编译成功, open browser to visit ${url}\n`));
 });
 
 // 编译失败

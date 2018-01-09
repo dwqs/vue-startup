@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HappyPack = require('happypack'); 
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 const getHappyPackConfig = require('./happypack');
 
@@ -110,5 +111,7 @@ module.exports = {
                 removeAttributeQuotes: false
             }
         }),
+
+        new ProgressBarPlugin()
     ]
 };
