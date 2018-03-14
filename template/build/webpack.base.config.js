@@ -79,13 +79,20 @@ module.exports = {
         hints: false
     },
 
-    plugins:[
+    plugins: [
         // copy assets
         new CopyWebpackPlugin([
             { 
                 context: '..', 
                 from: 'static/**/*', 
-                to: config[env].assetsSubDirectory, 
+                to: utils.resolve('dist'), 
+                force: true,
+                ignore: ['.*']
+            }, 
+            {
+                context: '../src',
+                from: 'assets/**/*',
+                to: utils.resolve('dist'),
                 force: true,
                 ignore: ['.*']
             }
