@@ -9,13 +9,13 @@ const compiler = webpack(webpackDevConfig);
 const server = new WebpackDevServer(compiler, webpackDevConfig.devServer);
 
 const env = process.env.NODE_ENV || 'development';
-const url = `localhost:${config.dev.port}/`;
+const url = `localhost:${config[env].port}/`;
 
 function compiledFail () {
     console.log(gutil.colors.white('Webpack 编译失败: \n'));
 }
 
-server.listen(config.dev.port, 'localhost', (err) => {
+server.listen(config[env], 'localhost', (err) => {
     if (err) {
         compiledFail();
         throw new gutil.PluginError('[webpack-dev-server err]', err);
