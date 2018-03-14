@@ -10,7 +10,7 @@ function resolve (dir) {
 }
 
 function assetsPath (_path) {
-    const assetsSubDirectory = config[env].assetsSubDirectory;
+    const assetsSubDirectory = config[env].assetsSubDirectory || 'static';
 
     return path.posix.join(assetsSubDirectory, _path);
 }
