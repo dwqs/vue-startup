@@ -34,6 +34,11 @@ module.exports = {
                 "name": "Vuex (https://github.com/vuejs/vuex)",
                 "value": "vuex",
                 "short": "vuex"
+              },
+              {
+                "name": "Mobx (https://github.com/mobxjs/mobx)",
+                "value": "mobx",
+                "short": "mobx"
               }
           ]
       },
