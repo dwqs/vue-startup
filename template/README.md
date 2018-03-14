@@ -7,9 +7,6 @@
  # 安装依赖
  npm i
 
- # 生成 dll 文件, 用于缩短开发时的 rebuild 时间
- npm run dll
-
  # 启动脚本
  npm run dev
 ```
@@ -57,7 +54,6 @@
 
 ## 其它
 
-* **window.PREFIX**: api请求前缀, 在 config/index.js#prefix 中配置
 * 脚手架默认加入了两个别名: `@src` 和 `@components`. 前者指向 `src` 目录, 后者指向 `src/components` 目录, 便于引入资源:
 
 ```
@@ -88,5 +84,3 @@ import Hello from '../../../../components/Hello/index.vue'; # 引入组件
 # Bad
 <img src = "../../../../assets/logo.png">  # 如果引用层级不深(不超过两层), 可以采用相对路径, 对于小图片有利于 base64 优化
 ```
-
-* 脚手架默认配置了 dll/happypack 构建优化和组件按需加载优化
