@@ -1,5 +1,5 @@
 import 'normalize.css';
-import '@babel/polyfill';
+import 'babel-polyfill';
 
 import Vue from 'vue';
 import VueRouter from 'vue-router';
@@ -12,7 +12,7 @@ import modules from '../modules/index';
 
 const env = process.env.NODE_ENV || 'development';
 
-if(env !== 'development'){
+if (env !== 'development') {
     Vue.config.devtools = false;
     Vue.config.productionTip = false;
 }

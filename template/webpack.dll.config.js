@@ -13,13 +13,14 @@ const vendors = [
 {{/if_eq}}
 
 module.exports = {
+    mode: 'development',
     entry: {
         vendor: vendors.concat('vue', 'vue-router', 'async-await-error-handling', 'axios')
     },
     output: {
         path: path.join(__dirname, './dist'),
         filename: '[name].dll.js',
-        //定义输出：window.${output.library}
+        // 定义输出：window.${output.library}
         library: '[name]_library'
     },
     plugins: [
