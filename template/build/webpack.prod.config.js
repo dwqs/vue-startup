@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const webpack = require('webpack');
+const merge = require('webpack-merge');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
@@ -40,6 +40,23 @@ module.exports = merge(baseWebpackConfig, {
         sourceMapFilename: '[file].map',
         chunkFilename: utils.assetsPath('js/[name].[chunkhash:8].js')
     },
+    optimization: {
+        // chunk for the webpack runtime code and chunk manifest
+        runtimeChunk: {
+            name: 'manifest'
+        },
+        // https://gist.github.com/sokra/1522d586b8e5c0f5072d7565c2bee693
+        splitChunks: {
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    priority: -20,
+                    chunks: 'all'
+                }
+            }
+        }
+    },
     devtool: config[env].productionSourceMap ? '#source-map' : false,
     plugins: [
         new webpack.HashedModuleIdsPlugin(),
@@ -56,9 +73,9 @@ module.exports = merge(baseWebpackConfig, {
 
         // gzip
         new CompressionPlugin({
-            asset: "[path].gz[query]",
+            asset: '[path].gz[query]',
             algorithm: "gzip",
-            test: /\.(js|html|less)$/,
+            test: /\.(js|html|less|css)$/,
             threshold: 10240,
             minRatio: 0.8
         }),

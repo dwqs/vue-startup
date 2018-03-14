@@ -1,17 +1,17 @@
 const webpack = require('webpack');
-const webpack = require('webpack');
+const merge = require('webpack-merge');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 const utils = require('./utils');
 const baseWebpackConfig = require('./webpack.base.config');
 const config = require('../config');
 
-const url = `http://localhost:${config.dev.port}`;
 const env = process.env.NODE_ENV || 'development';
+const url = `http://localhost:${config[env].port}`;
 
 module.exports = merge(baseWebpackConfig, {
     entry: {
-        app:[
+        app: [
             'webpack/hot/dev-server',
             `webpack-dev-server/client?http://localhost:${config[env].port}/`,
             utils.resolve('src/page/index.js')
