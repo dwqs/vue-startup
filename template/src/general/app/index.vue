@@ -19,7 +19,7 @@
     import Hello from '@components/hello/';
 
     {{#if_eq state 'vuex'}}
-    import {mapActions, mapGetters} from 'vuex';
+    import { mapActions, mapGetters } from 'vuex';
     export default{
         data () {
             return {
