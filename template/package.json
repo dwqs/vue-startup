@@ -18,7 +18,7 @@
     "vue-router": "^3.0.1",
     {{#if_eq state 'vuex'}}
     "vuex": "^3.0.1",
-    "vuex-router-sync": "^5.0.0"
+    "vuex-router-sync": "^5.0.0",
     {{/if_eq}}
     {{#if_eq state 'revue'}}
     "revuejs": "^1.0.1",
