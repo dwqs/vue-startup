@@ -3,11 +3,23 @@ import 'babel-polyfill';
 
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+{{#if_eq state 'mobx'}}
+import { observable, isObservable, toJS } from 'mobx';
+import VueMobx from 'vue-mobx';
+{{/if_eq}}
 {{#if_eq state 'vuex'}}
 import { sync } from 'vuex-router-sync';
 {{/if_eq}}
 {{#if_eq state 'revue'}}
 import modules from '../modules/index';
+{{/if_eq}}
+
+{{#if_eq state 'mobx'}}
+Vue.use(VueMobx, {
+    toJS: toJS, // must
+    isObservable: isObservable, // must
+    observable: observable,  // optional
+});
 {{/if_eq}}
 
 const env = process.env.NODE_ENV || 'development';

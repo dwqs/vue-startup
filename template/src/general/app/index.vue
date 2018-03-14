@@ -65,6 +65,23 @@
         }
     };
     {{/if_eq}}
-</script>
+    {{#if_eq state 'mobx'}}
+    import timeModel from '@src/mobx/time';
 
-<style></style>
+    export default{
+        data () {
+            return {
+                title: 'vuejs 2 + webpack 3'
+            };
+        },
+
+        fromMobx: {
+            timeModel
+        },
+
+        components: {
+            Hello
+        }
+    };
+    {{/if_eq}}
+</script>

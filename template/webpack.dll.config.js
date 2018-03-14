@@ -11,6 +11,11 @@ const vendors = [
     'revuejs'
 ];
 {{/if_eq}}
+{{#if_eq state 'mobx'}}
+const vendors = [
+    'vue-mobx', 'mobx'
+];
+{{/if_eq}}
 
 module.exports = {
     mode: 'development',

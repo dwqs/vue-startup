@@ -17,5 +17,9 @@
       }
     ],
     "stage-2"
+  ]{{#if_eq state 'mobx'}},
+  "plugins": [
+    "transform-decorators-legacy"
   ]
+  {{/if_eq}}
 }
