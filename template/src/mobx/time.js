@@ -3,7 +3,7 @@ import awaitTo from 'async-await-error-handling';
 
 import api from '@src/network/api';
 
-Class Time {
+class Time {
     @observable
     curTime = Date.now();
 
