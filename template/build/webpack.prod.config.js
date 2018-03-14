@@ -1,126 +1,83 @@
-const path = require('path');
+const webpack = require('webpack');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
-const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
-const os = require('os');
 const CompressionPlugin = require('compression-webpack-plugin');
-const HappyPack = require('happypack');  
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-const getHappyPackConfig = require('./happypack');
-
-const prodConfig = require('./webpack.base.config');
+const utils = require('./utils');
+const baseWebpackConfig = require('./webpack.base.config');
 const config = require('../config');
 
-prodConfig.module.rules.unshift({
-    test:/\.less$/,
-    use: ExtractTextPlugin.extract({
-        fallback: "vue-style-loader",
-        use: ['happypack/loader?id=less-prod']
-    })
-}, {
-    test:/\.css$/,
-    use: ExtractTextPlugin.extract({
-        fallback: "vue-style-loader",
-        use: ['happypack/loader?id=css-prod']
-    })
-});
+const env = process.env.NODE_ENV || 'development';
 
-prodConfig.plugins = (prodConfig.plugins || []).concat([
-    new CleanWebpackPlugin(['dist'], {
-        root: path.join(__dirname, '../'),
-        verbose: true,
-        dry: false
-    }),
-
-    new webpack.DefinePlugin({
-        'process.env': {
-            'NODE_ENV': JSON.stringify(config.build.env)
-        }
-    }),
-
-    new ExtractTextPlugin({
-        filename: '[name].[contenthash:8].css'
-    }),
-
-    new HappyPack(getHappyPackConfig({
-        id: 'less-prod',
-        loaders: ['css-loader', {
-            path: 'postcss-loader',
-            query: {
-                sourceMap: "inline"
-            }
-        }, 'less-loader']
-    })),
-
-    new HappyPack(getHappyPackConfig({
-        id: 'css-prod',
-        loaders: ['css-loader', {
-            path: 'postcss-loader',
-            query: {
-                sourceMap: "inline"
-            }
-        }]
-    })),
-
-    // Compress extracted CSS. We are using this plugin so that possible
-    // duplicated CSS from different components can be deduped.
-    new OptimizeCSSPlugin({
-        cssProcessorOptions: {
-            safe: true
-        },
-        cssProcessor: require('cssnano'),
-        assetNameRegExp: /\.less|\.css$/g
-    }),
-
-    new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
-        minChunks: ({resource}) => (
-            resource &&
-            resource.indexOf('node_modules') >= 0 &&
-            resource.match(/\.js$/)
-        )
-    }),
-
-    // gzip
-    new CompressionPlugin({
-        asset: "[path].gz[query]",
-        algorithm: "gzip",
-        test: /\.(js|html|less)$/,
-        threshold: 10240,
-        minRatio: 0.8
-    }),
-
-    new ParallelUglifyPlugin({
-        workerCount: os.cpus().length,
-        cacheDir: '.cache/',
-        sourceMap: true,
-        uglifyJS: {
-            compress: {
-                warnings: false,
-                drop_debugger: true,
-                drop_console: true
-            },
-            mangle: true
-        }
-    }),
-    
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new WebpackMd5Hash()
-]);
-
-module.exports = Object.assign({}, prodConfig, {
+module.exports = merge(baseWebpackConfig, {
     entry: {
-        app: path.resolve(__dirname, '../src/page/index.js')
+        app: utils.resolve('src/page/index.js')
+    },
+    module: {
+        rules: [
+            {
+                test: /\.vue$/,
+                type: 'javascript/auto',
+                loader: 'vue-loader',
+                options: {
+                    loaders: {
+                        css: utils.extractCSS(),
+                        less: utils.extractCSS({
+                            lang: 'less'
+                        })
+                    }
+                }
+            }
+        ]
     },
     output: {
-        filename: '[name].[chunkhash:8].js',
-        path: config.build.assetsRoot,
-        publicPath: config.build.assetsPublicPath,
+        filename: utils.assetsPath('js/[name].[chunkhash:8].js'),
+        path: config[env].assetsRoot,
+        publicPath: config[env].assetsPublicPath,
         sourceMapFilename: '[file].map',
-        chunkFilename: '[name].[chunkhash:8].js'
+        chunkFilename: utils.assetsPath('js/[name].[chunkhash:8].js')
     },
-    devtool: 'source-map'
+    devtool: config[env].productionSourceMap ? '#source-map' : false,
+    plugins: [
+        new webpack.HashedModuleIdsPlugin(),
+
+        new ExtractTextPlugin({
+            filename: utils.assetsPath('css/[name].[contenthash:8].css')
+        }),
+
+        new OptimizeCSSPlugin({
+            cssProcessorOptions: {
+                safe: true
+            }
+        }),
+
+        // gzip
+        new CompressionPlugin({
+            asset: "[path].gz[query]",
+            algorithm: "gzip",
+            test: /\.(js|html|less)$/,
+            threshold: 10240,
+            minRatio: 0.8
+        }),
+
+        new UglifyJsPlugin({
+            parallel: true,
+            cache: '.cache/',
+            sourceMap: true,
+            uglifyOptions: {
+                compress: {
+                    warnings: false,
+                    /* eslint-disable */
+                    drop_debugger: true,
+                    drop_console: true
+                },
+                mangle: true
+            }
+        }),
+
+        new WebpackMd5Hash()
+    ]
 });

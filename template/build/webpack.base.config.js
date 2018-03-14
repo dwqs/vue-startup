@@ -2,51 +2,59 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HappyPack = require('happypack'); 
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
-const getHappyPackConfig = require('./happypack');
-
 const config = require('../config');
+const utils = require('./utils');
 
 const env = process.env.NODE_ENV || 'development';
-const apiPrefix = env === 'development' ? config.dev.prefix : config.build.prefix;
+const apiPrefix = env === 'development' ? config[env].prefix : config[env].prefix;
 
 console.log('---------env------:', env, '------apiPrefix-------:', apiPrefix);
 
 module.exports = {
-    context: path.resolve(__dirname, '../src'),
+    mode: env,
+    context: utils.resolve('src'),
     module: {
         noParse: [/static|assets/],
         rules: [
             {
-                test: /\.vue$/,
-                use: [{
-                    loader: 'happypack/loader?id=vue'
-                }]
-            },
-            {
                 test: /\.js$/,
+                type: 'javascript/auto',
                 exclude: /node_modules/,
-                use: ['happypack/loader?id=js']
+                use: ['babel-loader']
             },
             {
-                test: /\.(png|jpg|gif|jpeg)$/,
+                test: /\.less$/,
+                type: 'javascript/auto',
+                use: utils.extractCSS({
+                    lang: 'less'
+                })
+            },
+            {
+                test: /\.css$/,
+                type: 'javascript/auto',
+                use: utils.extractCSS()
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                type: 'javascript/auto',
                 use: [{
                     loader: 'url-loader',
                     options: {
                         limit: 8192,
-                        name: '[name].[ext]?[hash:8]'
+                        name: utils.assetsPath('images/[name].[ext]')
                     }
                 }]
             },
             {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                type: 'javascript/auto',
                 use: [{
-                    loader: 'file-loader',
+                    loader: 'url-loader',
                     options: {
-                        limit: 8192,
-                        name: '[name].[ext]?[hash:8]'
+                        limit: 10000,
+                        name: utils.assetsPath('fonts/[name].[ext]')
                     }
                 }]
             }
@@ -54,17 +62,17 @@ module.exports = {
     },
 
     resolve: {
-        extensions: ['.vue', '.js'],
-        modules: [path.join(__dirname, '../node_modules')],
+        extensions: ['.vue', '.js', '.json'],
+        modules: [utils.resolve('node_modules')],
         alias: {
-            '@src': path.resolve(__dirname, '../src'),
-            '@components': path.resolve(__dirname, '../src/components'),
+            '@src': utils.resolve('src'),
+            '@components': utils.resolve('src/components'),
             'vue$': 'vue/dist/vue.esm.js'
         }
     },
 
     resolveLoader: {
-        modules: [path.join(__dirname, '../node_modules')]
+        modules: [utils.resolve('node_modules')]
     },
 
     performance: {
@@ -72,32 +80,16 @@ module.exports = {
     },
 
     plugins:[
-        new webpack.DefinePlugin({
-            'window.PREFIX': JSON.stringify(apiPrefix)
-        }),
-
         // copy assets
         new CopyWebpackPlugin([
-            { context: '../src', from: 'assets/**/*', to: path.resolve(__dirname, '../dist'), force: true }
+            { 
+                context: '..', 
+                from: 'static/**/*', 
+                to: config[env].assetsSubDirectory, 
+                force: true,
+                ignore: ['.*']
+            }
         ]),
-
-        new HappyPack(getHappyPackConfig({
-            id: 'vue',
-            loaders: ['vue-loader']
-            // loaders: [{
-            //     path: 'vue-loader',
-            //     query: {
-            //         // https://github.com/vuejs/vue-loader/issues/863
-            //         esModule: false
-            //     }
-            // }]
-        })),
-
-        new HappyPack(getHappyPackConfig({
-            id: 'js',
-            loaders: ['babel-loader']
-        })),
-
 
         // https://github.com/ampedandwired/html-webpack-plugin
         new HtmlWebpackPlugin({
