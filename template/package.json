@@ -46,7 +46,6 @@
     "copy-webpack-plugin": "^4.5.1",
     "cross-env": "^5.1.4",
     "css-loader": "^0.28.10",
-    "cssnano": "^3.10.0",
     "rimraf": "^2.6.2",
     "eslint": "^4.18.2",
     "eslint-config-vue": "^2.0.2",
@@ -69,7 +68,8 @@
     "webpack-dev-server": "^3.1.1",
     "webpack-md5-hash": "^0.0.6",
     "progress-bar-webpack-plugin": "^1.11.0",
-    "uglifyjs-webpack-plugin": "^1.2.3"
+    "uglifyjs-webpack-plugin": "^1.2.3",
+    "webpack-merge": "^4.1.2"
   },
   "engines": {
     "node": "> 8.1.4",
