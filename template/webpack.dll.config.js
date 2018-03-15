@@ -8,8 +8,11 @@ dependencies = dependencies.map(item => {
     if (item === 'vue') {
         return 'vue/dist/vue.esm.js';
     }
+    if (item === 'normalize.css') {
+        return 0;
+    }
     return item;
-}).filter(item => item !== 'normalize.css');
+}).filter(item => !!item);
 
 const env = process.env.NODE_ENV || 'development';
 
