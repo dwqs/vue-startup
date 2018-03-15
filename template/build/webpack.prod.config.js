@@ -5,7 +5,9 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const CompressionPlugin = require('compression-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const HappyPack = require('happypack');   
 
+const getHappyPackConfig = require('./happypack');
 const utils = require('./utils');
 const baseWebpackConfig = require('./webpack.base.config');
 const config = require('../config');
@@ -19,17 +21,12 @@ module.exports = merge(baseWebpackConfig, {
     module: {
         rules: [
             {
-                test: /\.vue$/,
+                test: /\.(less|css)$/,
                 type: 'javascript/auto',
-                loader: 'vue-loader',
-                options: {
-                    loaders: {
-                        css: utils.extractCSS(),
-                        less: utils.extractCSS({
-                            lang: 'less'
-                        })
-                    }
-                }
+                use: ExtractTextPlugin.extract({
+                    fallback: 'vue-style-loader',
+                    use: ['happypack/loader?id=css']
+                })
             }
         ]
     },
@@ -61,6 +58,11 @@ module.exports = merge(baseWebpackConfig, {
     plugins: [
         new webpack.HashedModuleIdsPlugin(),
 
+        new HappyPack(getHappyPackConfig({
+            id: 'css',
+            loaders: utils.extractCSS()
+        })),
+
         new ExtractTextPlugin({
             filename: utils.assetsPath('css/[name].[contenthash:8].css')
         }),
@@ -74,7 +76,7 @@ module.exports = merge(baseWebpackConfig, {
         // gzip
         new CompressionPlugin({
             asset: '[path].gz[query]',
-            algorithm: "gzip",
+            algorithm: 'gzip',
             test: /\.(js|html|less|css)$/,
             threshold: 10240,
             minRatio: 0.8
@@ -82,7 +84,7 @@ module.exports = merge(baseWebpackConfig, {
 
         new UglifyJsPlugin({
             parallel: true,
-            cache: '.cache/',
+            cache: true,
             sourceMap: true,
             uglifyOptions: {
                 compress: {

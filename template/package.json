@@ -7,8 +7,9 @@
   "scripts": {
     "prepush": "npm run ilint -q",
     "dll": "npx webpack --config webpack.dll.config.js",
-    "dev": "npx rimraf dist && npm run dll && npx cross-env NODE_ENV=development node ./build/dev-server.js",
-    "build": "npx rimraf dist && npx cross-env NODE_ENV=production npx webpack --config ./build/webpack.prod.config.js --hide-modules",
+    "postinstall": "npm -s run dll",
+    "dev": "npx cross-env NODE_ENV=development node ./build/dev-server.js",
+    "build": "npx rimraf dist && npm run dll && npx cross-env NODE_ENV=production npx webpack --config ./build/webpack.prod.config.js --hide-modules",
     "ilint": "npx eslint src/**/*.js src/**/*.vue",
     "fix": "npx eslint --fix src/**/*.js src/**/*.vue",
     "commitmsg": "npx commitlint -e"
@@ -54,8 +55,9 @@
     "eslint-config-vue": "^2.0.2",
     "eslint-plugin-vue": "^2.1.0",
     "extract-text-webpack-plugin": "^4.0.0-alpha.0",
-    "gulp-util": "^3.0.8",
+    "happypack": "^5.0.0-beta.1",
     "html-webpack-plugin": "github:webpack-contrib/html-webpack-plugin",
+    "gulp-util": "^3.0.8",
     "less": "^3.0.1",
     "less-loader": "^4.1.0",
     "open-browser-webpack-plugin": "^0.0.5",

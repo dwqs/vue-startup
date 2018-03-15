@@ -3,7 +3,9 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const HappyPack = require('happypack');   
 
+const getHappyPackConfig = require('./happypack');
 const config = require('../config');
 const utils = require('./utils');
 
@@ -22,19 +24,14 @@ module.exports = {
                 test: /\.js$/,
                 type: 'javascript/auto',
                 exclude: /node_modules/,
-                use: ['babel-loader']
+                loader: 'happypack/loader?id=js'
             },
             {
-                test: /\.less$/,
+                test: /\.vue$/,
                 type: 'javascript/auto',
-                use: utils.extractCSS({
-                    lang: 'less'
-                })
-            },
-            {
-                test: /\.css$/,
-                type: 'javascript/auto',
-                use: utils.extractCSS()
+                use: [{
+                    loader: 'happypack/loader?id=vue'
+                }]
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -79,7 +76,41 @@ module.exports = {
         hints: false
     },
 
+    stats: {
+        children: false
+    },
+
     plugins: [
+        new webpack.DllReferencePlugin({
+            context: __dirname,
+            // 引入 dll 生成的 manifest 文件
+            manifest: utils.resolve('dist/vendor-manifest.json')
+        }),
+
+        new HappyPack(getHappyPackConfig({
+            id: 'js',
+            loaders: [{
+                path: 'babel-loader',
+                query: {
+                    cacheDirectory: true
+                }
+            }] 
+        })),
+
+        // https://vue-loader.vuejs.org/en/configurations/extract-css.html
+        // options: {
+        //     loaders: {
+        //         css: utils.extractCSS(),
+        //         less: utils.extractCSS({
+        //             lang: 'less'
+        //         })
+        //     }
+        // }
+        new HappyPack(getHappyPackConfig({
+            id: 'vue',
+            loaders: ['vue-loader']
+        })),
+        
         // copy assets
         new CopyWebpackPlugin([
             { 

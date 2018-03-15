@@ -1,38 +1,37 @@
 const path = require('path');
 const webpack = require('webpack');
 
-{{#if_eq state 'vuex'}}
-const vendors = [
-    'vuex', 'vuex-router-sync'
-];
-{{/if_eq}}
-{{#if_eq state 'revue'}}
-const vendors = [
-    'revuejs'
-];
-{{/if_eq}}
-{{#if_eq state 'mobx'}}
-const vendors = [
-    'vue-mobx', 'mobx'
-];
-{{/if_eq}}
+const pkg = require('./package.json');
+let dependencies = Object.keys(pkg['dependencies']);
 
-module.exports = {
-    mode: 'development',
+dependencies = dependencies.map(item => {
+    if (item === 'vue') {
+        return 'vue/dist/vue.esm.js';
+    }
+    return item;
+}).filter(item => item !== 'normalize.css');
+
+const env = process.env.NODE_ENV || 'development';
+
+const dllConfig = {
+    context: process.cwd(),
+    mode: env,
     entry: {
-        vendor: vendors.concat('vue', 'vue-router', 'async-await-error-handling', 'axios')
+        vendor: dependencies
     },
     output: {
-        path: path.join(__dirname, './dist'),
+        path: path.join(__dirname, 'dist'),
         filename: '[name].dll.js',
         // 定义输出：window.${output.library}
         library: '[name]_library'
     },
     plugins: [
         new webpack.DllPlugin({
-            path: path.join(__dirname, './dist', '[name]-manifest.json'),
+            path: path.join(__dirname, 'dist', '[name]-manifest.json'),
             // 和 output.library 一样即可
             name: '[name]_library'
         })
     ]
 };
+
+module.exports = dllConfig;

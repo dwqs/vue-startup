@@ -1,7 +1,9 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
+const HappyPack = require('happypack');   
 
+const getHappyPackConfig = require('./happypack');
 const utils = require('./utils');
 const baseWebpackConfig = require('./webpack.base.config');
 const config = require('../config');
@@ -20,9 +22,9 @@ module.exports = merge(baseWebpackConfig, {
     module: {
         rules: [
             {
-                test: /\.vue$/,
+                test: /\.(less|css)$/,
                 type: 'javascript/auto',
-                use: ['vue-loader']
+                use: ['happypack/loader?id=css']
             }
         ]
     },
@@ -38,11 +40,10 @@ module.exports = merge(baseWebpackConfig, {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
 
-        new webpack.DllReferencePlugin({
-            context: __dirname,
-            // 引入 dll 生成的 manifest 文件
-            manifest: utils.resolve('dist/vendor-manifest.json')
-        }),
+        new HappyPack(getHappyPackConfig({
+            id: 'css',
+            loaders: utils.extractCSS()
+        })),
 
         new OpenBrowserPlugin({ url: url })
     ],
