@@ -43,7 +43,7 @@ function extractCSS (opts) {
         }
     };
 
-    const loaders = [cssLoader, postcssLoader];
+    const loaders = [cssLoader, postcssLoader, lessLoader];
 
     if (env === 'development') {
         return ['vue-style-loader'].concat(loaders);
