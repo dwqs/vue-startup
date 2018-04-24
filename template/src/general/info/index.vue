@@ -9,14 +9,20 @@
 </template>
 
 <script>
-export default {
-    name: 'info',
-    data () {
-        return {
-            info: 'project info:'
-        };
-    }
-};
+    import test from '@src/lib/test';
+
+    export default {
+        name: 'info',
+        data () {
+            return {
+                info: 'project info:'
+            };
+        },
+
+        mounted () {
+            test();
+        }
+    };
 </script>
 
 <style>
