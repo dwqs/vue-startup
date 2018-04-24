@@ -63,7 +63,7 @@ module.exports = merge(baseWebpackConfig, {
             loaders: utils.extractCSS()
         })),
 
-        new ExtractTextPlugin({
+        new MiniCssExtractPlugin({
             filename: utils.assetsPath('css/[name].[contenthash:8].css')
         }),
 
