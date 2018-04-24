@@ -17,6 +17,7 @@ const env = process.env.NODE_ENV || 'development';
 
 module.exports = merge(baseWebpackConfig, {
     entry: {
+        vendors: ['vue', 'vue-router', 'axios', 'async-await-error-handling'],
         app: utils.resolve('src/page/index.js')
     },
     module: {
@@ -46,10 +47,15 @@ module.exports = merge(baseWebpackConfig, {
         splitChunks: {
             cacheGroups: {
                 vendors: {
-                    test: /[\\/]node_modules[\\/]/,
                     name: 'vendors',
-                    priority: -20,
-                    chunks: 'all'
+                    priority: -20
+                },
+                commons: {
+                    // 抽取 demand-chunk 下的公共依赖模块
+                    name: 'commons',
+                    minChunks: 3,
+                    chunks: 'async',
+                    minSize: 0
                 }
             }
         }
