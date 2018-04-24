@@ -1,11 +1,12 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const CompressionPlugin = require('compression-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HappyPack = require('happypack');   
+const WebpackInlineManifestPlugin = require('webpack-inline-manifest-plugin');
 
 const getHappyPackConfig = require('./happypack');
 const utils = require('./utils');
@@ -23,10 +24,10 @@ module.exports = merge(baseWebpackConfig, {
             {
                 test: /\.(less|css)$/,
                 type: 'javascript/auto',
-                use: ExtractTextPlugin.extract({
-                    fallback: 'vue-style-loader',
-                    use: ['happypack/loader?id=css']
-                })
+                loaders: [
+                    MiniCssExtractPlugin.loader,
+                    'happypack/loader?id=css'
+                ]
             }
         ]
     },
@@ -34,7 +35,6 @@ module.exports = merge(baseWebpackConfig, {
         filename: utils.assetsPath('js/[name].[chunkhash:8].js'),
         path: config[env].assetsRoot,
         publicPath: config[env].assetsPublicPath,
-        sourceMapFilename: '[file].map',
         chunkFilename: utils.assetsPath('js/[name].[chunkhash:8].js')
     },
     optimization: {
@@ -78,7 +78,7 @@ module.exports = merge(baseWebpackConfig, {
             asset: '[path].gz[query]',
             algorithm: 'gzip',
             test: /\.(js|html|less|css)$/,
-            threshold: 10240,
+            threshold: 0,
             minRatio: 0.8
         }),
 
@@ -97,6 +97,9 @@ module.exports = merge(baseWebpackConfig, {
             }
         }),
 
-        new WebpackMd5Hash()
+        new WebpackMd5Hash(),
+        new WebpackInlineManifestPlugin({
+            name: 'webpackManifest'
+        })
     ]
 });
