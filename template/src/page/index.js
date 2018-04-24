@@ -1,3 +1,6 @@
+// Promise polyfill for webpack2+: https://stackoverflow.com/questions/38960490/how-can-i-polyfill-promise-with-webpack
+require('es6-promise').polyfill();
+
 import 'normalize.css';
 import 'babel-polyfill';
 

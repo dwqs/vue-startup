@@ -9,13 +9,10 @@
         <meta name="renderer" content="webkit">
         <meta name="force-rendering" content="webkit">
         <title>{{description}}</title>
-<!--         <% for (var chunk in htmlWebpackPlugin.options.externals) { %><script src="<%=htmlWebpackPlugin.options.externals[chunk] %>"></script><% } %>
-        <% for (var chunk in htmlWebpackPlugin.files.chunks) { %><script src="<%=htmlWebpackPlugin.files.chunks[chunk].entry %>"></script><% } %> -->
-        <!-- <% if (htmlWebpackPlugin.options.env === 'development') { %>
-        <script src="/vendor.dll.js"></script>
-        <% } %> -->
+        <script src="https://cdn.bootcss.com/es6-promise/4.1.1/es6-promise.min.js"></script>
     </head>
     <body>
         <div id="app"></div>
+        <%= htmlWebpackPlugin.files.webpackManifest %>
     </body>
 </html>
