@@ -37,6 +37,12 @@ module.exports = merge(baseWebpackConfig, {
         chunkFilename: '[name].js'
     },
     plugins: [
+        new webpack.DllReferencePlugin({
+            context: __dirname,
+            // 引入 dll 生成的 manifest 文件
+            manifest: utils.resolve('dist/vendor-manifest.json')
+        }),
+        
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
 

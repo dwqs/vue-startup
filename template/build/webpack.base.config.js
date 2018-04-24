@@ -76,17 +76,15 @@ module.exports = {
         hints: false
     },
 
+    externals: {
+        'es6-promise': 'window.ES6Promise'
+    },
+
     stats: {
         children: false
     },
 
     plugins: [
-        new webpack.DllReferencePlugin({
-            context: __dirname,
-            // 引入 dll 生成的 manifest 文件
-            manifest: utils.resolve('dist/vendor-manifest.json')
-        }),
-
         new HappyPack(getHappyPackConfig({
             id: 'js',
             loaders: [{
