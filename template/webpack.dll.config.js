@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const HappyPack = require('happypack');   
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const getHappyPackConfig = require('./build/happypack');
 const pkg = require('./package.json');
@@ -54,13 +53,7 @@ const dllConfig = {
                     cacheDirectory: true
                 }
             }] 
-        })),
-
-        new UglifyJsPlugin({
-            parallel: true,
-            cache: true,
-            sourceMap: false
-        })
+        }))
     ]
 };
 
