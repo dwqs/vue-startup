@@ -14,6 +14,6 @@ module.exports = {
         assetsPublicPath: '/',
         assetsSubDirectory: 'static',
         prefix: '{{prefix}}',
-        productionSourceMap: true
+        productionSourceMap: false
     }
-}
+};
