@@ -33,7 +33,6 @@ module.exports = merge(baseWebpackConfig, {
         filename: '[name].js',
         path: config[env].assetsRoot,
         publicPath: config[env].assetsPublicPath,
-        sourceMapFilename: '[file].map',
         chunkFilename: '[name].js'
     },
     plugins: [
