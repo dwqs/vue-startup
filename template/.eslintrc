@@ -15,7 +15,7 @@
         node: true,
         browser: true
     },
-    extends: "vue",
+    extends: ["plugin:vue-libs/recommended"],
     rules: {
         indent: [2, 4, { "SwitchCase": 1 }],
         quotes: [2, "single", { "allowTemplateLiterals": true }],
