@@ -46,10 +46,10 @@ module.exports = merge(baseWebpackConfig, {
         // https://gist.github.com/sokra/1522d586b8e5c0f5072d7565c2bee693
         splitChunks: {
             cacheGroups: {
-                vendors: {
-                    name: 'vendors',
-                    priority: -20
-                },
+                // vendors: {
+                //     name: 'vendors',
+                //     priority: -20
+                // },
                 commons: {
                     // 抽取 demand-chunk 下的公共依赖模块
                     name: 'commons',
