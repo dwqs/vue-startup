@@ -46,3 +46,4 @@ converage
 .vscode
 reports
 .cache
+package-lock.json
