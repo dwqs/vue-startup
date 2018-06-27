@@ -11,6 +11,9 @@
         <title>{{description}}</title>
         <script src="https://cdn.bootcss.com/es6-promise/4.1.1/es6-promise.min.js"></script>
         <%= htmlWebpackPlugin.files.webpackManifest %>
+        <% if (htmlWebpackPlugin.options.env === 'development') { %>
+        <script src="/vendor.dll.js"></script>
+        <% } %>
     </head>
     <body>
         <div id="app"></div>
