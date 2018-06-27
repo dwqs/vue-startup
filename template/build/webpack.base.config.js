@@ -10,7 +10,7 @@ const config = require('../config');
 const utils = require('./utils');
 
 const env = process.env.NODE_ENV || 'development';
-const apiPrefix = env === 'development' ? config[env].prefix : config[env].prefix;
+const apiPrefix = config[env].prefix;
 
 console.log('---------env------:', env, '------apiPrefix-------:', apiPrefix);
 
