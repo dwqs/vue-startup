@@ -108,6 +108,10 @@ module.exports = {
             id: 'vue',
             loaders: ['vue-loader']
         })),
+
+        new webpack.DefinePlugin({
+            'window.PREFIX': JSON.stringify(apiPrefix)
+        }),
         
         // copy assets
         new CopyWebpackPlugin([
