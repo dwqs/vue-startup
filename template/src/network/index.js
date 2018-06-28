@@ -21,41 +21,31 @@ const instance = axios.create({
 export default {
     get (obj) {
         return Promise.resolve(
-            instance.get(obj.url,{
-                params: obj.data ? obj.data : {}
-            })
-        )
+            instance.get(obj.url, obj.data ? obj.data : {})
+        );
     },
 
     post (obj) {
         return Promise.resolve(
-            instance.post(obj.url,{
-                data: obj.data ? obj.data : {}
-            })
-        )
+            instance.post(obj.url, obj.data ? obj.data : {})
+        );
     },
 
     delete (obj) {
         return Promise.resolve(
-            instance.delete(obj.url,{
-                data: obj.data ? obj.data : {}
-            })
-        )
+            instance.delete(obj.url, obj.data ? obj.data : {})
+        );
     },
 
     put (obj) {
         return Promise.resolve(
-            instance.put(obj.url,{
-                data: obj.data ? obj.data : {}
-            })
-        )
+            instance.put(obj.url, obj.data ? obj.data : {})
+        );
     },
 
-    patch(obj){
+    patch (obj) {
         return Promise.resolve(
-            instance.patch(obj.url,{
-                data: obj.data ? obj.data : {}
-            })
-        )
+            instance.patch(obj.url, obj.data ? obj.data : {})
+        );
     }
 };
