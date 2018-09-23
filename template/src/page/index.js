@@ -13,9 +13,6 @@ import VueMobx from 'vue-mobx';
 {{#if_eq state 'vuex'}}
 import { sync } from 'vuex-router-sync';
 {{/if_eq}}
-{{#if_eq state 'revue'}}
-import modules from '../modules/index';
-{{/if_eq}}
 
 {{#if_eq state 'mobx'}}
 Vue.use(VueMobx, {
@@ -68,9 +65,6 @@ const app = new Vue({
     router,
     {{#if_eq state 'vuex'}}
     store,
-    {{/if_eq}}
-    {{#if_eq state 'revue'}}
-    modules,
     {{/if_eq}}
     ...Outer
 });

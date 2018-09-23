@@ -48,33 +48,6 @@
         }
     };
     {{/if_eq}}
-    {{#if_eq state 'revue'}}
-    import { mergeActions, mergeProps } from 'revuejs';
-
-    export default{
-        data () {
-            return {
-                title: 'vuejs 2 + webpack 3'
-            };
-        },
-
-        computed: {
-            ...mergeProps(['time.curTime'])
-        },
-
-        methods: {
-            ...mergeActions(['time.changeTime'])
-        },
-
-        components: {
-            Hello
-        },
-
-        mounted () {
-            test();
-        }
-    };
-    {{/if_eq}}
     {{#if_eq state 'mobx'}}
     import timeModel from '@src/mobx/time';
 
