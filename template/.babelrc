@@ -19,7 +19,7 @@
   ],
   "plugins": [
     {{#if_eq state 'mobx'}}
-    ["@babel/plugin-proposal-decorators", { "legacy": true }],,
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
     {{/if_eq}}
     "@babel/plugin-syntax-dynamic-import"
   ]
