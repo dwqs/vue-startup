@@ -1,5 +1,5 @@
 const HappyPack = require('happypack')
-const happyThreadPool = HappyPack.ThreadPool({ size: 6 })
+const happyThreadPool = HappyPack.ThreadPool({ size: 3 })
 
 module.exports = function (opts) {
   return {
