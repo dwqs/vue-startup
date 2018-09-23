@@ -21,7 +21,9 @@ const instance = axios.create({
 export default {
     get (obj) {
         return Promise.resolve(
-            instance.get(obj.url, obj.data ? obj.data : {})
+            instance.get(obj.url, {
+                params: obj.data ? obj.data : {}
+            })
         );
     },
 
