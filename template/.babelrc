@@ -15,11 +15,12 @@
         "useBuiltIns": "entry",
         "loose": true
       }
-    ],
-    "@babel/react"
-  ]{{#if_eq state 'mobx'}},
+    ]
+  ],
   "plugins": [
-    ["@babel/plugin-proposal-decorators", { "legacy": true }]
+    {{#if_eq state 'mobx'}}
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],,
+    {{/if_eq}}
+    "@babel/plugin-syntax-dynamic-import"
   ]
-  {{/if_eq}}
 }
