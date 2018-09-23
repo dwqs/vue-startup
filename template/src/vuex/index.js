@@ -1,18 +1,18 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-import * as actions from './actions';
-import * as getters from './getters';
+import * as actions from './actions'
+import * as getters from './getters'
 
-import time from './modules/time';
+import time from './modules/time'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
-    actions,
-    getters,
-    modules: {
-        time
-    },
-    strict: false
-});
+  actions,
+  getters,
+  modules: {
+    time
+  },
+  strict: false
+})

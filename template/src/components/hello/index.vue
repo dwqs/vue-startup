@@ -1,21 +1,21 @@
-<template lang="html">
-    <div class="desc">
-        <p>\{{desc}}</p>
-        <img src="/assets/logo.png" alt="logo">
-    </div>
+<template>
+  <div class="desc">
+    <p>{{ desc }}</p>
+    <img 
+      src="/assets/logo.png" 
+      alt="logo">
+  </div>
 </template>
 
 <script>
-    import './hello.less';
+import './hello.less'
 
-    export default {
-        name: 'hello',
-        data () {
-            return {
-                desc: 'A simple template webpack + vuejs setup for projects'
-            };
-        }
-    };
+export default {
+  name: 'Hello',
+  data () {
+    return {
+      desc: 'A simple template webpack + vuejs setup for projects'
+    }
+  }
+}
 </script>
-
-<style></style>
