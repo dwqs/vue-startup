@@ -14,11 +14,14 @@ const baseWebpackConfig = require('./webpack.base.config')
 const config = require('../config')
 
 const env = process.env.NODE_ENV || 'development';
+const matchVendorsChunk = /vue|vue-router|axios|async-await-error-handling|mobx|vue-mobx|vuex/
 
 module.exports = merge(baseWebpackConfig, {
   entry: {
-    vendors: ['vue', 'vue-router', 'axios', 'async-await-error-handling'],
-    app: utils.resolve('src/page/index.js')
+    app: [
+      '@babel/polyfill',
+      utils.resolve('src/page/index.js')
+    ]
   },
   module: {
     rules: [
@@ -39,6 +42,7 @@ module.exports = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('js/[name].[chunkhash:8].js')
   },
   optimization: {
+    minimize: true, // false 则不压缩
     // chunk for the webpack runtime code and chunk manifest
     runtimeChunk: {
       name: 'manifest'
@@ -46,16 +50,20 @@ module.exports = merge(baseWebpackConfig, {
     // https://gist.github.com/sokra/1522d586b8e5c0f5072d7565c2bee693
     splitChunks: {
       cacheGroups: {
-        // vendors: {
-        //     name: 'vendors',
-        //     priority: -20
-        // },
+        // default: false, // 禁止默认的优化
+        vendors: {
+          test (chunk) {
+            return chunk.context.includes('node_modules') && matchVendorsChunk.test(chunk.context)
+          },
+          name: 'vendors',
+          chunks: 'all'
+        },
         commons: {
           // 抽取 demand-chunk 下的公共依赖模块
           name: 'commons',
-          minChunks: 3,
+          minChunks: 3, // 在chunk中最小的被引用次数
           chunks: 'async',
-          minSize: 0
+          minSize: 0 // 被提取模块的最小大小
         }
       }
     }

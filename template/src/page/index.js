@@ -1,8 +1,4 @@
-// Promise polyfill for webpack2+: https://stackoverflow.com/questions/38960490/how-can-i-polyfill-promise-with-webpack
-require('es6-promise').polyfill()
-
 import 'normalize.css'
-import 'babel-polyfill'
 
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -16,9 +12,9 @@ import { sync } from 'vuex-router-sync'
 
 {{#if_eq state 'mobx'}}
 Vue.use(VueMobx, {
-    toJS: toJS, // must
-    isObservable: isObservable, // must
-    observable: observable,  // optional
+  toJS: toJS, // must
+  isObservable: isObservable, // must
+  observable: observable,  // optional
 });
 {{/if_eq}}
 
