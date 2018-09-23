@@ -16,7 +16,7 @@ function compiledFail () {
   console.log(chalk.white('Webpack 编译失败: \n'));
 }
 
-server.listen(config[env], 'localhost', (err) => {
+server.listen(config[env].port, config[env].ip, (err) => {
   if (err) {
     compiledFail()
     throw new PluginError('[webpack-dev-server err]', err)
