@@ -40,7 +40,7 @@ module.exports = merge(baseWebpackConfig, {
     new webpack.DllReferencePlugin({
       context: __dirname,
       // 引入 dll 生成的 manifest 文件
-      manifest: utils.resolve('dist/vendor-manifest.json')
+      manifest: utils.resolve('dll/vendor-manifest.json')
     }),
     
     new webpack.HotModuleReplacementPlugin(),

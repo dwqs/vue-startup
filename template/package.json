@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "prepush": "npm run ilint -q",
-    "dll": "npx webpack --config webpack.dll.config.js",
+    "dll": "npx rimraf dll && npx webpack --config webpack.dll.config.js",
     "postinstall": "npm -s run dll",
     "dev": "npx cross-env NODE_ENV=development node ./build/dev-server.js",
     "build": "npx rimraf dist && npx cross-env NODE_ENV=production npx webpack --config ./build/webpack.prod.config.js --hide-modules",
