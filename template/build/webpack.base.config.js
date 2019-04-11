@@ -18,7 +18,7 @@ module.exports = {
   mode: env,
   context: utils.resolve('src'),
   module: {
-    noParse: [/static|assets/],
+    // noParse: [/static|assets/],
     rules: [{
       test: /\.js$/,
       type: 'javascript/auto',

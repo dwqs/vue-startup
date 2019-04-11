@@ -19,7 +19,7 @@ const matchVendorsChunk = /vue|vue-router|axios|async-await-error-handling|mobx|
 module.exports = merge(baseWebpackConfig, {
   entry: {
     app: [
-      '@babel/polyfill',
+      // '@babel/polyfill',
       utils.resolve('src/page/index.js')
     ]
   },
