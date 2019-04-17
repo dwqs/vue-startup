@@ -1,7 +1,7 @@
 {
     root: true,
-    parser: "babel-eslint",
     parserOptions: {
+        parser: "babel-eslint",
         ecmaVersion: 7,
         sourceType: "module",
         allowImportExportEverywhere: false,
@@ -15,6 +15,9 @@
         node: true,
         browser: true
     },
+    plugins: [
+        "vue"
+    ],
     extends: ["plugin:vue-libs/recommended"],
     rules: {
         quotes: [2, "single", { "allowTemplateLiterals": true }],
