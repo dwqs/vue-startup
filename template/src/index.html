@@ -10,9 +10,6 @@
         <meta name="force-rendering" content="webkit">
         <title>{{description}}</title>
         <%= htmlWebpackPlugin.files.webpackManifest %>
-        <% if (htmlWebpackPlugin.options.env === 'development') { %>
-        <script src="/vendor.dll.js"></script>
-        <% } %>
     </head>
     <body>
         <div id="app"></div>
